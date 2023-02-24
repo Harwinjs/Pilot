@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo} from "react";
 import ToDo from "./components/ToDo"
 import {ReactToPrint} from 'react-to-print'
-import { addToDo, getAllToDo, updateToDo, deleteToDo, doneToDo } from "./utils/HandleApi";
-import ReactPaginate from "react-paginate"
+import { addToDo, getAllToDo, updateToDo, deleteToDo, doneToDo, App1 } from "./utils/HandleApi";
+import ReactPaginate from "react-paginate";
+import Pagination from "./components/Pagination";
+
 function App() {
 
   const [toDo,setToDo]=useState([])
@@ -10,9 +12,18 @@ function App() {
   const [isUpdating, setisUpdating] = useState(false)
   const [toDoId, setToDoId] = useState("")
   const [isdone, setisdone] = useState(false)
-
+//Pagination 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(5);
+//Calculation to show the number of records per page, in Pagination
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  //Slicing
+  const slicedData = toDo.slice(firstPostIndex, lastPostIndex);
+  
   useEffect(()=>{
     getAllToDo(setToDo)
+    console.log(typeof(setToDo))
      },[])
 
   const updateMode = (_id, text, isdone)=>{
@@ -48,7 +59,7 @@ function App() {
 
 </div>
     <div className="list">
-    {toDo.map((item) => <ToDo 
+    {slicedData.map((item) => <ToDo 
           key={item._id} 
           text={item.text}
           isdone={item.isdone}
@@ -56,8 +67,13 @@ function App() {
           // deleteToDo = {()=> deleteToDo(item._id, setToDo)}
           deleteToDo = {()=>  deleteToDo(item._id, setToDo) }
           doneToDo= {() => doneToDo(item._id, item.text,setToDo, setText,isdone)}
-           />)}
-
+          />)}
+           <Pagination
+                totalPosts={toDo.length}
+                postsPerPage={postsPerPage}
+                setCurrentPage={setCurrentPage}
+                currentPage={currentPage}
+            />
     </div>
     </div>
     </div>

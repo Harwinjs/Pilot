@@ -1,13 +1,15 @@
 import axios from "axios"
+import Pagination from "../components/Pagination";
+import React, { useEffect, useState } from "react";
 
 const baseUrl ="http://localhost:5000"
 
-const getAllToDo = (setToDo) =>{
+const getAllToDo = (setToDo) => {
     axios
     .get(baseUrl)
     .then(({data})=>{
         console.log('data--->',data);
-        setToDo(data)
+        setToDo(data)   
     })
 }
 

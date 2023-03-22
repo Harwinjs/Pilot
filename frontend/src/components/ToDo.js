@@ -2,9 +2,8 @@ import React, {useState} from "react";
 import {BiEdit} from "react-icons/bi"
 import {AiFillDelete, AiFillCheckSquare, AiFillPlusCircle} from "react-icons/ai"
 // import App from "../App";
-//asdasdasdasd
-//asdas
-const ToDo =({text, updateMode, deleteToDo, doneToDo, subToDo}) => {
+
+const ToDo =({text, updateMode, deleteToDo, doneToDo, subToDo, checkStat}) => {
     return(
         <div className="todo">
             <div className="text"> {text} </div>
@@ -15,9 +14,7 @@ const ToDo =({text, updateMode, deleteToDo, doneToDo, subToDo}) => {
                             if (answer) {
                             updateMode()
                                 }
-                            else {
-                                    alert("Not updated")
-                                    }
+                            
                 }} />
                 {/* Delete confirmation */}
                 <AiFillDelete className="icon" 
@@ -27,12 +24,14 @@ const ToDo =({text, updateMode, deleteToDo, doneToDo, subToDo}) => {
                             if (answer) {
                             deleteToDo()
                                 }
-                            else {
-                                    alert("Not Deleted")
-                                    }
+                            
                 }
                 } />
-                <AiFillCheckSquare className="icon" onClick={doneToDo} />
+                <div className="icon">
+                <div className="check">
+                <input  id="checkStat" type="checkbox" value="true" onClick= {doneToDo} />
+                </div>
+                </div>
                 {/* <AiFillPlusCircle className="icon" onClick={subToDo} /> */}
 
                 

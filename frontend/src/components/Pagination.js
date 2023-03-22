@@ -13,7 +13,7 @@ const Pagination = ({
     for (let i = 1; i <= Math.ceil(totalPosts / postsPerPage); i++) {
         pages.push(i);
     }
-
+//Setting the index to current page
     return (
         <div className='pagination'>
             {pages.map((page, index) => {

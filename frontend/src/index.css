@@ -72,3 +72,21 @@ input{
 .done{
   text-decoration: line-through;
 }
+.check{
+  background-color: #000;
+  border: 1px solid #000;
+  color: #000;
+  padding: 0px 0px;
+  text-align: center;
+  display: inline-block;
+  font-size: 20px;
+  /* margin: 15px 15px; */
+ cursor: pointer;
+  height: 20px;
+  width: 5%;
+  display: flex;
+  right: 10%;
+  position: absolute;
+  gap:1rem;
+    border-radius:5px;
+}
